@@ -1,0 +1,29 @@
+.tasks-state  {
+
+}
+
+.task {
+    overflow: hidden;
+    margin-bottom: 2px;
+    cursor: pointer;
+    .task-name {
+        float: left;
+        width: 30%;
+        padding: 10px;
+        background-color: #e0e0e0;
+    }
+    .task-name:hover {
+        background-color: #e0ebbf;
+    }
+    .task-detail {
+        float: right;
+        width: 50%;
+        padding: 10px;
+        background-color: #f0f0f0;
+    }
+    .task-status {
+        float: right;
+        width: 20%;
+        padding: 10px;
+    }
+}

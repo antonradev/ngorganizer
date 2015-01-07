@@ -1,0 +1,47 @@
+html {
+    overflow-y: scroll;
+}
+
+#root
+{
+    position: relative; //View will be positioned absolute during animations
+
+    > div[ng-view], > div[ui-view]
+    {
+        > .container
+        {
+            max-width: none;
+            width: 100%;
+            margin-top: 40px;
+        }
+    }
+}
+
+.no-left-margin
+{
+    margin-left: 0 !important;
+}
+
+[ng-click], [ui-sref]
+{
+    cursor: pointer;
+}
+.whitespace {
+    height: 12px;
+}
+.multiview {
+    margin: 40px 0;
+}
+.task-single {
+    margin: 40px 0;
+}
+
+.task-status.new {
+    background-color: #c2efff;
+}
+.task-status.in-progress {
+    background-color: #f8f0d0;
+}
+.task-status.finished {
+    background-color: #e4efc5;
+}

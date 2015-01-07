@@ -1,0 +1,30 @@
+<div class="tasks-state container">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="multiview">
+                    <h1>Тasks</h1>
+                    <div class="tasks">
+                        <div ng-repeat="task in Tasks.data" class="task">
+                            <div ui-sref="task({taskId: task.id})">
+                                <div class="task-name">
+                                    {{task.name}}
+                                </div>
+                                <div ng-class="
+                                    {   'new' : task.status_code === '0', 
+                                        'in-progress' : task.status_code === '1', 
+                                        'finished' : task.status_code === '2'}" class="task-status">
+                                    {{task.status}}
+                                </div>
+                                <div class="task-detail">
+                                    {{task.description}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
