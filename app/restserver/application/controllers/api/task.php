@@ -46,10 +46,13 @@ class Task extends REST_Controller {
         }
     }
 
-    function task_post() {
-        //$this->some_model->updateUser( $this->get('id') );
-        $message = array('id' => $this->get('id'), 'name' => $this->post('name'), 'email' => $this->post('email'), 'message' => 'ADDED!');
+    function taskupdate_post($id) {
+        $message = array('name' => $this->post('name'), 'description' => $this->post('description'), 'end_date' => $this->post('end_date'));
 
+        $this->db->where('id', $id);
+        $this->db->set($message, FALSE);
+        $this->db->update('tasks');
+        
         $this->response($message, 200); // 200 being the HTTP response code
     }
 

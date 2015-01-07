@@ -5,32 +5,30 @@ angular.module('ngorganiser')
             $stateProvider
                     .state('taskEdit', stateFactory('Task', {
                         url: '/edit/:taskId',
-                        templateUrl: 'states/task/edit/main-view.html',
+                        templateUrl: 'states/task/edit/edit-task-view.html',
                         controller: 'TaskEditCtrl'
                     }));
         })
-        .controller("TaskEditCtrl", function ($scope, $http, $stateParams) {
-
-            $scope.formData = {
-                name: "Something",
-                description: "Dbhdfjsb s sdfjb dsfjhj"
-            };
-            $scope.saveTask = function () {
-                alert('Saving...');
-                $scope.Task = $scope.formData;
-                /*
-                 $http.post('http://posttestserver.com/post.php?dir=jsfiddle', JSON.stringify(formData)).success(function () {
-                 });
-                 */
-            };
-
+        .controller("TaskEditCtrl", function ($scope, $http, $stateParams, $state, TaskService) {
 
             var taskId = $stateParams.taskId;
 
-            $http.jsonp('http://ngorganizer.dev/restserver/index.php/api/task/tasksingle/format/json/?id=' + taskId + '&callback=JSON_CALLBACK').
-                    success(function (data) {
-                        $scope.Task = data;
-                    }).
-                    error(function (data) {
+            TaskService.then(function (TaskService) {
+                $scope.Task = TaskService;
+
+                $scope.saveTask = function () {
+
+                    $http.post('http://ngorganizer.dev/restserver/index.php/api/task/taskupdate/' + taskId + '/format/json/?callback=JSON_CALLBACK', $scope.Task.data).then(function (data) {
+                        $state.go('tasks');
                     });
+
+                };
+
+
+            });
+
+
+
+
+
         });
