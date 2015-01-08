@@ -2,11 +2,10 @@
 
 angular.module('ngorganiser')
         .config(function ($stateProvider, stateFactory) {
-            $stateProvider
-                    .state('task', stateFactory('Task', {
-                        url: '/task/:taskId',
-                        templateUrl: 'states/task/index/task-single-view.html'
-                    }));
+            $stateProvider.state('task', stateFactory('Task', {
+                url: '/task/:taskId',
+                templateUrl: 'states/task/index/task-single-view.html'
+            }));
         })
         .service('TaskService', function ($http, $stateParams) {
             var taskId = $stateParams.taskId;

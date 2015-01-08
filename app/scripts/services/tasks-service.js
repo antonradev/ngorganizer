@@ -8,5 +8,10 @@ angular.module('ngorganiser')
             }));
         })
         .service('TasksService', function ($http) {
-            return $http.jsonp('http://ngorganizer.dev/restserver/index.php/api/task/tasks/format/json/json/?callback=JSON_CALLBACK');
+            return {
+                getTasks: function() {
+                    return $http.jsonp('http://ngorganizer.dev/restserver/index.php/api/task/tasks/format/json/?callback=JSON_CALLBACK');
+                }
+            };
         });
+

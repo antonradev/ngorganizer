@@ -9,26 +9,30 @@ angular.module('ngorganiser')
                         controller: 'TaskEditCtrl'
                     }));
         })
-        .controller("TaskEditCtrl", function ($scope, $http, $stateParams, $state, TaskService) {
+        .controller("TaskEditCtrl", function ($scope, $http, $stateParams, $window, TaskService) {
 
             var taskId = $stateParams.taskId;
 
-            TaskService.then(function (TaskService) {
-                $scope.Task = TaskService;
+            TaskService.then(function (tasksData) {
+
+                $scope.Task = tasksData;
 
                 $scope.saveTask = function () {
 
+
                     $http.post('http://ngorganizer.dev/restserver/index.php/api/task/taskupdate/' + taskId + '/format/json/?callback=JSON_CALLBACK', $scope.Task.data).then(function (data) {
-                        $state.go('tasks');
+//                        $state.go('tasks');
+                        $window.history.back();
+
                     });
 
-                };
 
+
+
+
+                };
 
             });
 
 
-
-
-
-        });
+        }); // End of TaskEditCtrl Controller
